@@ -4,7 +4,6 @@
 }
 
 .tillyke{
-     width: 100%;
   padding: 50px;
   margin: 25px;
   color: black;
@@ -14,4 +13,23 @@ background-color: red;
   animation-name: farveSkift;
   animation-duration: 0.4s;
    animation-iteration-count: infinite;
+}
+
+.tillyke svg{
+  display: block;
+  margin: 0 auto;
+  scale: 50%;
+}
+
+main{
+  text-align: center;
+  margin-top: 50px;
+}
+
+input, button{
+  min-width: 100px
+}
+
+.inputs{
+  margin-top: 10px;
 }

@@ -1,0 +1,17 @@
+@keyframes farveSkift {
+  from {background-color: red;}
+  to {background-color: yellow;}
+}
+
+.tillyke{
+     width: 100%;
+  padding: 50px;
+  margin: 25px;
+  color: black;
+  font-size: 40px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background-color: red;
+  animation-name: farveSkift;
+  animation-duration: 0.4s;
+   animation-iteration-count: infinite;
+}

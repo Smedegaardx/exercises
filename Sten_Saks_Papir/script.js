@@ -1,3 +1,6 @@
+// let results = ["Rock", "Paper", "Scissors"];
+// console.log(results)
+
 const player = document.getElementById("player1");
 const computer = document.getElementById("player2");
 
@@ -35,5 +38,21 @@ function animateHands() {
 }
 
 function computerStart() {
-  // Computer vælger hånd
+  let computerChoice = Math.round(Math.random()* 2)
+  console.log(computerChoice)
+  if (computerChoice == 0){
+    computer.classList.add("rock")
+  computer.classList.remove("paper", "scissors");
+
+  } 
+  if (computerChoice == 1){
+    computer.classList.add("paper")
+  computer.classList.remove("rock", "scissors");
+
+  } 
+  if (computerChoice == 2){
+    computer.classList.add("scissors")
+  computer.classList.remove("paper", "rock");
+
+  } 
 }

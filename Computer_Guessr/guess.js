@@ -3,6 +3,7 @@ let divider = 50;
 let totalGuesses = 1;
 
 const pcGuessField = document.getElementById("computerGuess");
+const btnContainer = document.getElementById("btnContainer");
 
 document.getElementById("startBtn").addEventListener("click", startGame);
 document.getElementById("lowerBtn").addEventListener("click", lower);
@@ -15,6 +16,8 @@ function startGame() {
   lowerBtn.disabled = false;
   higherBtn.disabled = false;
   startBtn.disabled = true;
+  btnContainer.classList.remove("hidden");
+  startBtn.classList.add("hidden");
 }
 
 function lower() {
@@ -40,4 +43,7 @@ function iWin() {
   lowerBtn.disabled = true;
   higherBtn.disabled = true;
   startBtn.disabled = false;
+  btnContainer.classList.add("hidden");
+  startBtn.classList.remove("hidden");
+  startBtn.innerHTML = "Start nyt spil";
 }

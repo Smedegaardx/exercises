@@ -1,0 +1,46 @@
+@font-face {
+    font-family: Fira;
+    src: url(FiraSans-Regular.ttf);
+}
+
+*{
+    margin: 0;
+}
+
+h1, h2, p{
+    color: #840032;
+    font-family: Fira;
+}
+
+main{
+    margin: 80px auto;
+    justify-content: center;
+    width: 500px;
+    text-align: center;
+    background-color: #FFA69E;
+    padding: 20px 30px 300px;
+    border-radius: 10%;
+    box-shadow: 0 0 100px -25px ;
+}
+
+h1{
+    margin-bottom: 20px;
+}
+
+body{
+    display: flex;
+    background-color: #C6D8D3;
+}
+
+button{
+    margin: 2px;
+}
+
+
+#startBtn{
+    margin-top: 15px;
+}
+
+.hidden{
+    display: none;
+}

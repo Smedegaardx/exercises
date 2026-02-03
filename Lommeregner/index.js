@@ -11,6 +11,7 @@ let firstNumVal = "";
 let secondNumVal = "";
 let regneArt = "";
 
+let result = 0;
 //
 //
 function klik(evt) {
@@ -24,15 +25,42 @@ function klik(evt) {
   if (typeOfInput === "num") {
     // hvis det er et tal, så tjek om det er første eller andet tal der skal gemmes(!) og husk at tallene er strings
     // og det er en fordel her, men ikke nå der skal regnes
+    if (firstNumVal == ""){
+      firstNumVal = evt.target.dataset.func
+       console.log(firstNumVal)
+      }
+      else{
+        secondNumVal = evt.target.dataset.func
+        console.log(secondNumVal)
+    }
   } else if (typeOfInput === "regneart") {
     // hvis det er en regneart, så gem den
+    regneArt = evt.target.dataset.func
+    console.log(regneArt)
   } else if (typeOfInput === "ligmed") {
     // hvis det er ligmed, så regn regnestykket ud med de gemte værdier
     // ligesom i den simple lommeregner.  Der skal parseInt() på strings til tal
     // skriv resultatet til skærmen med updateScreen()
+    if(regneArt === "+"){
+      result = Math.round(parseInt(firstNumVal) + parseInt(secondNumVal))
+      updateScreen(result)
+    }
+    else if(regneArt === "-"){
+      result = Math.round(parseInt(firstNumVal) - parseInt(secondNumVal))
+      updateScreen(result)
+    }
+    else if(regneArt === "*"){
+      result = Math.round(parseInt(firstNumVal) * parseInt(secondNumVal))
+      updateScreen(result)
+    }
+    else {
+      result = Math.round(parseInt(firstNumVal) / parseInt(secondNumVal))
+      updateScreen(result)
+    }
   } else if (typeOfInput === "CLEAR") {
     // reset alt: lav en reset funktion der nulstiller alle variabler
     // skærmen bliver nulstillet med resetScreen()
+    resetVal();
     resetScreen();
   }
 }
@@ -67,4 +95,14 @@ function updateScreen(chars) {
 function resetScreen() {
   displayContent = "";
   display.value = "0";
+}
+function resetVal(){
+displayContent = "";
+typeOfInput = "";
+
+firstNumVal = "";
+secondNumVal = "";
+regneArt = "";
+
+result = 0;
 }

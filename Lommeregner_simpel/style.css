@@ -1,0 +1,25 @@
+
+
+main{
+    display: flex;
+    flex-direction: column;
+    max-width: 220px;
+    text-align: center;
+    gap: 10px;
+     background-color: #F0EEE9;
+     margin: 50px;
+     padding: 5px;
+}
+
+div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 100px;
+    margin: 0 auto;
+}
+
+button{
+    max-width: 100px;
+    margin: 0  auto;
+}

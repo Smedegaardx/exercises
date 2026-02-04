@@ -11,6 +11,11 @@ const vehicles = [
   { type: "Løbehjul", passengers: 1, isElectric: true },
 ];
 const tbodyPointer = document.querySelector("tbody");
+
+const onlyElectric = vehicles.filter(isElectric);
+const twoOrMore = vehicles.filter(moreThanTwo);
+const jonas = vehicles.filter(jonasElectric);
+const ryebread = vehicles.filter(ryeBreadSeaters);
 showTheseVehicles(vehicles);
 
 function showTheseVehicles(arr) {
@@ -25,4 +30,37 @@ function showTheseVehicles(arr) {
   <td>${each.isTandem}</td>
 </tr>`;
   });
+}
+
+
+function isElectric(vehicle){
+  if(vehicle.isElectric === true){
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function moreThanTwo(vehicle){
+    if(vehicle.passengers > 2){
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function jonasElectric(vehicle){
+    if(vehicle.isElectric === true && vehicle.ownedBy === "Jonas"){
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function ryeBreadSeaters(vehicle){
+    if(vehicle.passengers > 1 && vehicle.fuel === "Rugbrød"){
+    return true;
+  } else {
+    return false;
+  }
 }

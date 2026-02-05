@@ -1,3 +1,23 @@
+document.querySelectorAll("button").forEach((btn) => {
+  console.log("btn", btn);
+  btn.addEventListener("click", klik);
+});
+
+function klik(evt) {
+  const currentFilter = evt.target.dataset.filter;
+  if (currentFilter === "onlyElectric") {
+    showTheseVehicles(onlyElectric);
+  } else if (currentFilter === "twoOrMore") {
+    showTheseVehicles(twoOrMore);
+  } else if (currentFilter === "ryebread") {
+    showTheseVehicles(ryebread);
+  } else if (currentFilter === "jonas") {
+    showTheseVehicles(jonas);
+  } else {
+    showTheseVehicles(vehicles);
+  }
+}
+
 const vehicles = [
   { type: "Bus", fuel: "Diesel", passengers: 45, stops: ["Nørrebrogade", "Elmegade"] },
   { type: "Bil", fuel: "Benzin", passengers: 4, ownedBy: "Klaus" },
@@ -16,49 +36,50 @@ const onlyElectric = vehicles.filter(isElectric);
 const twoOrMore = vehicles.filter(moreThanTwo);
 const jonas = vehicles.filter(jonasElectric);
 const ryebread = vehicles.filter(ryeBreadSeaters);
+
 showTheseVehicles(vehicles);
 
 function showTheseVehicles(arr) {
+  tbodyPointer.innerHTML = "";
   arr.forEach((each) => {
     tbodyPointer.innerHTML += `<tr>
   <td>${each.type}</td>
-  <td>${each.fuel}</td>
+  <td>${each.fuel ?? "-"}</td>
   <td>${each.passengers}</td> 
-  <td>${each.stops}</td>
-  <td>${each.ownedBy}</td>
-  <td>${each.isElectric}</td>
-  <td>${each.isTandem}</td>
+  <td>${each.stops ?? "-"}</td>
+  <td>${each.ownedBy ?? "-"}</td>
+  <td>${each.isElectric ? "✓ " : "X"}</td>
+  <td>${each.isTandem ? "✓ " : "X"}</td>
 </tr>`;
   });
 }
 
-
-function isElectric(vehicle){
-  if(vehicle.isElectric === true){
+function isElectric(vehicle) {
+  if (vehicle.isElectric === true) {
     return true;
   } else {
     return false;
   }
 }
 
-function moreThanTwo(vehicle){
-    if(vehicle.passengers > 2){
+function moreThanTwo(vehicle) {
+  if (vehicle.passengers > 2) {
     return true;
   } else {
     return false;
   }
 }
 
-function jonasElectric(vehicle){
-    if(vehicle.isElectric === true && vehicle.ownedBy === "Jonas"){
+function jonasElectric(vehicle) {
+  if (vehicle.isElectric === true && vehicle.ownedBy === "Jonas") {
     return true;
   } else {
     return false;
   }
 }
 
-function ryeBreadSeaters(vehicle){
-    if(vehicle.passengers > 1 && vehicle.fuel === "Rugbrød"){
+function ryeBreadSeaters(vehicle) {
+  if (vehicle.passengers > 1 && vehicle.fuel === "Rugbrød") {
     return true;
   } else {
     return false;

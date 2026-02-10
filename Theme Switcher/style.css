@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+}
+
+body[data-theme="Bluish"]{
+--header-bg-col: #6C809A;
+--main-bg-col: #CAD2C5;
+--footer-bg-col: #253031;
+}
+
+body[data-theme="Antique"]{
+--header-bg-col: #746F72;
+--main-bg-col: #E6DBD0;
+--footer-bg-col: #735F3D;
+}
+
+body[data-theme="Party"]{
+--header-bg-col: #540D6E;
+--main-bg-col: #EE4266;
+--footer-bg-col: #FFD23F;
+--text: white;
+}
+
+body{
+    margin: 20px;
+}
+
+header{
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    background-color: var(--header-bg-col);
+}
+
+main{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    padding: 40px;
+    background-color: var(--main-bg-col);
+    color: var(--text)
+}
+
+main div{
+    margin: 20px;
+}
+
+main h1{
+    margin-bottom: 20px;
+}
+
+footer{
+    padding: 40px;
+    background-color: var(--footer-bg-col);
+}
+

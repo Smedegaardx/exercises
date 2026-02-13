@@ -2,7 +2,7 @@ const body = document.querySelector("body");
 
 document.addEventListener("DOMContentLoaded", oldTheme);
 
-document.querySelector("#themes").addEventListener("change", swapTheme);
+const switcher = document.querySelector("#themes").addEventListener("change", swapTheme);
 
 function swapTheme(evt) {
   body.dataset.theme = `${evt.target.value}`;
@@ -10,5 +10,6 @@ function swapTheme(evt) {
 }
 
 function oldTheme() {
-  body.dataset.theme = `${localStorage.theme}`;
+  body.dataset.theme = localStorage.getItem("theme");
+  switcher.value = localStorage.getItem("theme");
 }

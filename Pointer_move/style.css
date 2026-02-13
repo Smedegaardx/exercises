@@ -1,0 +1,9 @@
+:root{
+    --lightness: 50;
+}
+
+body{
+    width: 1080px;
+    height: 1080px;
+    background-color: hsl(79 100% var(--lightness));
+}

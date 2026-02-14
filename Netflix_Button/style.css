@@ -1,0 +1,65 @@
+@keyframes moveNext{
+    100% {background-position: left}
+}
+
+body{
+    background-color: bisque;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    align-items: flex-end;
+    height: 97dvh;
+    
+}
+
+div{
+  display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 1rem;
+    margin: 0 3rem 2rem 0;
+}
+
+button{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+    gap: 2dvh;
+    font-weight: bold;
+    font-size: 16px;
+    border-style: none;
+    border-radius: 5%;
+}
+
+#creditsBtn{
+    color: white;
+    width: 170px;
+    background-color: #cccbca;
+}
+
+#nextBtn{
+    background-color:#cccbca ;
+    width: 220px;
+}
+
+.animate{
+    background: linear-gradient(to right, white 50%, transparent 0);
+    background-position: right;
+    background-size: 200% 100%;
+    animation-name: moveNext;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+.prematureEnd{
+    background-color: white;
+}
+
+svg{
+    max-height: 20px;
+}
+    
+

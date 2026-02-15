@@ -3,13 +3,12 @@
 }
 
 body{
-    background-color: bisque;
+    background-color: rgb(255 228 196);
     display: flex;
     justify-content: flex-end;
     flex-direction: row;
     align-items: flex-end;
     height: 97dvh;
-    
 }
 
 div{
@@ -31,6 +30,10 @@ button{
     font-size: 16px;
     border-style: none;
     border-radius: 5%;
+}
+
+button:hover{
+    cursor: pointer;
 }
 
 #creditsBtn{
@@ -60,6 +63,10 @@ button{
 
 svg{
     max-height: 20px;
+}
+
+.hidden{
+    display: none;
 }
     
 

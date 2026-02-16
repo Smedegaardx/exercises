@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+}
+
+#newTaskAmount{
+    width: 50px;
+}
+
+
+/* Liste styling */
+
+.listItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+    max-height: 80px;
+    max-width: 800px;
+    background-color: wheat;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px 20px;
+}
+
+
+.listItemDesc{
+    display: flex;
+   justify-content: flex-start;
+   gap: 20px;
+}
+
+.listEnd{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+
+svg{
+    scale: 50%;
+    transform: rotate(90deg)
+}
+
+.listItemAmount, .listTime{
+    color: gray;
+}

@@ -12,9 +12,13 @@
       <h2>Hvad skal du have klaret?</h2>
 
       <input id="newTaskText" />
-      <input id="newTaskAmount" type="number" />
-      <input id="newTaskTime" type="time" />
-      <button id="addButton">Tilføj</button>
+      <div>
+      <button id="amountButton">Tilføj antal</button>
+      <input id="newTaskAmount" type="number" class="hidden"/>
+      <button id="timeButton">Tilføj tidspunkt</button>
+      <input id="newTaskTime" type="time" class="hidden"/>
+      </div>
+      <button id="addButton">Tilføj til listen</button>
       <h1>To-Do</h1>
       <ul id="listField"></ul>
       <h1>Færdiggjorte opgaver</h1>

@@ -2,11 +2,20 @@ let toDoArray = [];
 const listField = document.querySelector("#listField");
 const doneListField = document.querySelector("#doneListField");
 const addBtn = document.querySelector("#addButton");
+const amountBtn = document.querySelector("#amountButton");
+const timeBtn = document.querySelector("#timeButton");
 const newTaskText = document.querySelector("#newTaskText");
 const newTaskAmount = document.querySelector("#newTaskAmount");
 const newTaskTime = document.querySelector("#newTaskTime");
 
 addBtn.addEventListener("click", addTask);
+amountBtn.addEventListener("click", () => {newTaskAmount.classList.remove("hidden");
+  amountBtn.classList.add("hidden")
+});
+timeBtn.addEventListener("click", () => {newTaskTime.classList.remove("hidden");
+  timeBtn.classList.add("hidden")
+});
+
 
 // Tager localstorage og viser listen, efter siden er loadet
 
@@ -26,6 +35,10 @@ function addTask() {
   newTaskTime.value = "";
   console.log(toDoArray);
   displayTasks();
+  newTaskTime.classList.add("hidden");
+  timeBtn.classList.remove("hidden")
+  newTaskAmount.classList.add("hidden");
+  amountBtn.classList.remove("hidden")
 }
 
 function displayTasks() {

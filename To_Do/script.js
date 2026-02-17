@@ -9,10 +9,13 @@ const newTaskTime = document.querySelector("#newTaskTime");
 addBtn.addEventListener("click", addTask);
 
 // Tager localstorage og viser listen, efter siden er loadet
+
 window.addEventListener("DOMContentLoaded", () => {retrievedString = localStorage.getItem("tasks");
 retrievedArray = JSON.parse(retrievedString);
+if(retrievedArray != null){
 toDoArray = retrievedArray
-displayTasks()})
+displayTasks()}
+})
 
 function addTask() {
   const toDoObj = { text: newTaskText.value, amount: newTaskAmount.value, time: newTaskTime.value, done: false, id: self.crypto.randomUUID() };

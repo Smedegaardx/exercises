@@ -56,7 +56,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
 function addTask() {
   if (newTaskText.value != ""){
-    const toDoObj = { text: newTaskText.value, amount: newTaskAmount.value, time: newTaskTime.value, done: false, id: self.crypto.randomUUID() };
+    const toDoObj = { 
+      text: newTaskText.value, 
+      amount: newTaskAmount.value, 
+      time: newTaskTime.value, 
+      done: false, 
+      id: self.crypto.randomUUID() };
   toDoArray.push(toDoObj);
   displayTasks();
   // Reset input fields
@@ -179,8 +184,13 @@ updateBtn.classList.remove("hidden")
 // Replacer den task hvis popup er åben med ny task
 function updateTask(evt){
  item = toDoArray.find((item) => item.id == evt.target.dataset.id);
- const toDoObj = { text: editTaskText.value, amount: editTaskAmount.value, time: editTaskTime.value, done: false, id: evt.target.dataset.id };
-  toDoArray.push(toDoObj);
+ const toDoObj = { 
+  text: editTaskText.value, 
+  amount: editTaskAmount.value, 
+  time: editTaskTime.value, 
+  done: false, id: 
+  evt.target.dataset.id };
+ toDoArray.push(toDoObj);
  itemIndex = toDoArray.findIndex((item) => item.id == evt.target.dataset.id);
  toDoArray.splice(itemIndex, 1)
  displayTasks();

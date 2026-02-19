@@ -58,11 +58,11 @@ function addTask() {
   if (newTaskText.value != ""){
     const toDoObj = { text: newTaskText.value, amount: newTaskAmount.value, time: newTaskTime.value, done: false, id: self.crypto.randomUUID() };
   toDoArray.push(toDoObj);
+  displayTasks();
   // Reset input fields
   newTaskText.value = "";
   newTaskAmount.value = "";
   newTaskTime.value = "";
-  displayTasks();
   newTaskTime.classList.add("hidden");
   timeBtn.classList.remove("hidden");
   newTaskAmount.classList.add("hidden");

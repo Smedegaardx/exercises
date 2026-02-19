@@ -48,7 +48,7 @@ newTaskText.addEventListener("keypress", function(event) {
 window.addEventListener("DOMContentLoaded", () => {
   retrievedString = localStorage.getItem("tasks");
   retrievedArray = JSON.parse(retrievedString);
-  if (retrievedArray != null) {
+  if ((retrievedArray != null)  && (retrievedString != "[]")) {
     toDoArray = retrievedArray;
     displayTasks();
   }

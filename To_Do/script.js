@@ -55,7 +55,9 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function addTask() {
-  const toDoObj = { text: newTaskText.value, amount: newTaskAmount.value, time: newTaskTime.value, done: false, id: self.crypto.randomUUID() };
+  if (newTaskText.value != ""){
+  console.log(newTaskText.value)
+    const toDoObj = { text: newTaskText.value, amount: newTaskAmount.value, time: newTaskTime.value, done: false, id: self.crypto.randomUUID() };
   toDoArray.push(toDoObj);
   // Reset input fields
   newTaskText.value = "";
@@ -67,6 +69,7 @@ function addTask() {
   timeBtn.classList.remove("hidden");
   newTaskAmount.classList.add("hidden");
   amountBtn.classList.remove("hidden");
+  }
 }
 
 function displayTasks() {

@@ -9,22 +9,25 @@ const newTaskAmount = document.querySelector("#newTaskAmount");
 const newTaskTime = document.querySelector("#newTaskTime");
 
 addBtn.addEventListener("click", addTask);
-amountBtn.addEventListener("click", () => {newTaskAmount.classList.remove("hidden");
-  amountBtn.classList.add("hidden")
+amountBtn.addEventListener("click", () => {
+  newTaskAmount.classList.remove("hidden");
+  amountBtn.classList.add("hidden");
 });
-timeBtn.addEventListener("click", () => {newTaskTime.classList.remove("hidden");
-  timeBtn.classList.add("hidden")
+timeBtn.addEventListener("click", () => {
+  newTaskTime.classList.remove("hidden");
+  timeBtn.classList.add("hidden");
 });
-
 
 // Tager localstorage og viser listen, efter siden er loadet
 
-window.addEventListener("DOMContentLoaded", () => {retrievedString = localStorage.getItem("tasks");
-retrievedArray = JSON.parse(retrievedString);
-if(retrievedArray != null){
-toDoArray = retrievedArray
-displayTasks()}
-})
+window.addEventListener("DOMContentLoaded", () => {
+  retrievedString = localStorage.getItem("tasks");
+  retrievedArray = JSON.parse(retrievedString);
+  if (retrievedArray != null) {
+    toDoArray = retrievedArray;
+    displayTasks();
+  }
+});
 
 function addTask() {
   const toDoObj = { text: newTaskText.value, amount: newTaskAmount.value, time: newTaskTime.value, done: false, id: self.crypto.randomUUID() };
@@ -36,16 +39,17 @@ function addTask() {
   console.log(toDoArray);
   displayTasks();
   newTaskTime.classList.add("hidden");
-  timeBtn.classList.remove("hidden")
+  timeBtn.classList.remove("hidden");
   newTaskAmount.classList.add("hidden");
-  amountBtn.classList.remove("hidden")
+  amountBtn.classList.remove("hidden");
 }
 
 function displayTasks() {
   listField.innerHTML = "";
   doneListField.innerHTML = "";
-  toDoArray.forEach((item) =>  { if (item.done == false){
-    listField.innerHTML += `<li class="listItem">
+  toDoArray.forEach((item) => {
+    if (item.done == false) {
+      listField.innerHTML += `<li class="listItem">
         <div class="listItemDesc">
           <input type="checkbox" class="checkbox" data-id="${item.id}" />
           <p class="listItemText">${item.text}</p>
@@ -61,8 +65,9 @@ function displayTasks() {
           </svg>
           </a>
         </div>
-      </li>`;}
-      else {doneListField.innerHTML += `<li class="listItem">
+      </li>`;
+    } else {
+      doneListField.innerHTML += `<li class="listItem">
         <div class="listItemDesc">
           <input type="checkbox" class="checkbox" checked data-id="${item.id}"/>
           <p class="listItemText">${item.text}</p>
@@ -78,34 +83,40 @@ function displayTasks() {
           </svg>
           </a>
         </div>
-      </li>`;}
+      </li>`;
+    }
   });
+  document.querySelector("#h2_1").classList.remove("hidden");
+  document.querySelector("#h2_2").classList.remove("hidden");
 
   // Sæt eventlistener på hver checkbox som bliver skabt fra arrayet
-checkboxes = document.querySelectorAll('.checkbox')
-checkboxes.forEach((box) => {
-  box.addEventListener("click", (evt) => {
-    moveTask(evt)
+  checkboxes = document.querySelectorAll(".checkbox");
+  checkboxes.forEach((box) => {
+    box.addEventListener("click", (evt) => {
+      moveTask(evt);
+    });
   });
-});
-// Sæt eventlistener på hver menuknap som bliver skabt fra arrayet
-buttons = document.querySelectorAll('.menuButton')
-buttons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    openMenu()
+  // Sæt eventlistener på hver menuknap som bliver skabt fra arrayet
+  buttons = document.querySelectorAll(".menuButton");
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      openMenu();
+    });
   });
-});
   // Gemmer array i localstorage, ved at gøre det til JSON
-string = JSON.stringify(toDoArray)
-localStorage.setItem("tasks", string)
+  string = JSON.stringify(toDoArray);
+  localStorage.setItem("tasks", string);
 }
 
 // Rykker en task fra to-do til done hvis der klikkes på dens checkbox
-function moveTask(evt){
-thisItem = toDoArray.find(item => item.id == evt.target.dataset.id)
-if(thisItem.done == false){ thisItem.done = true}
-else if(thisItem.done == true){thisItem.done = false}
-  displayTasks()
+function moveTask(evt) {
+  thisItem = toDoArray.find((item) => item.id == evt.target.dataset.id);
+  if (thisItem.done == false) {
+    thisItem.done = true;
+  } else if (thisItem.done == true) {
+    thisItem.done = false;
+  }
+  displayTasks();
 }
 
 function openMenu() {

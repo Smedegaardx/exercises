@@ -9,19 +9,18 @@
   <body>
     <main>
       <h1><span>To</span>odle-<span>Do</span>odle</h1>
-      <h2>Hvad skal du have klaret?</h2>
-
-      <input id="newTaskText" />
+      <h3>Hvad skal du have klaret?</h3>
+      <input id="newTaskText" placeholder="Opgave, Indkøb e.l." class="taskinput" />
       <div>
-      <button id="amountButton">Tilføj antal</button>
-      <input id="newTaskAmount" type="number" class="hidden"/>
-      <button id="timeButton">Tilføj tidspunkt</button>
-      <input id="newTaskTime" type="time" class="hidden"/>
+        <button id="amountButton">Tilføj antal</button>
+        <input id="newTaskAmount" type="number" class="hidden taskinput" />
+        <button id="timeButton">Tilføj tidspunkt</button>
+        <input id="newTaskTime" type="time" class="hidden taskinput" />
       </div>
-      <button id="addButton">Tilføj til listen</button>
-      <h1>To-Do</h1>
+      <button id="addButton" class="primary">Tilføj til listen</button>
+      <h2 id="h2_1" class="hidden">To-Do</h2>
       <ul id="listField"></ul>
-      <h1>Færdiggjorte opgaver</h1>
+      <h2 id="h2_2" class="hidden">Done</h2>
       <ul id="doneListField"></ul>
     </main>
   </body>

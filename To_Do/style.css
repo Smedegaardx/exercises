@@ -1,24 +1,120 @@
+@font-face {
+    font-family: Bungee;
+    src: url(src/Bungee-Regular.ttf);
+}
+
+@font-face {
+    font-family: Sarala;
+    src: url(src/Sarala-Regular.ttf);
+}
+
+.hidden{display: none;}
+
 *{
     margin: 0;
+}
+
+body{
+    background-color: #F3E8EE;
 }
 
 main{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 40px auto;
+    margin: 20px auto;
+    padding: 40px 10px;
     gap: 1rem;
-    background-color: aquamarine;
+    background-color: #BACDB0;
     width: 70dvh;
+    border: 3px solid #475B63;
+    border-radius: 5%;
+    color: #1F271B;
 }
 
-.hidden{display: none;}
+h1{
+    color: #823038;
+    font-size: 36px;
+}
+
+h1, h2{
+    font-family: Bungee;
+    font-weight: 100;
+    
+}
+
+p, button, h3{
+    font-family: Sarala;
+    font-weight: 800
+}
+
+
+.taskinput{
+    width: 280px;
+  padding: 16px 14px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  border: 2px solid #4f6f5f;
+  background-color: #f5f7f4;
+  color: #1f2a23;
+  outline: none;
+  margin: 30px 0 10px;
+}
+
+.taskinput::placeholder{
+color: #7a8f82;
+}
+
+#newTaskText:focus {
+  border-color: #7ea48b;
+  box-shadow: 0 0 0 3px rgba(126, 164, 139, 0.3);
+}
 
 #newTaskAmount{
     width: 50px;
 }
 
+#newTaskTime{
+    width: 80px;
+}
 
+button{padding: 4px 14px;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  border: 2px solid #4f6f5f;
+  background-color: #e2eadf;
+  color: #1f2a23;
+  cursor: pointer;
+  transition: all 0.15s ease;}
+
+
+button:hover {
+  background-color: #d4e0d0;
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button.primary {
+  border: 2px solid #4f6f5f;
+  font-weight: 700;
+  box-shadow: 0 4px 0 #4f6f5f;
+  scale: 110%;
+}
+
+button.primary:hover {
+  transform: translateY(1px);
+  box-shadow: 0 3px 0 #4f6f5f;
+}
+
+button.primary:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #4f6f5f;
+}
+
+  a{cursor: pointer;}
 /* Liste styling */
 
 .listItem{
@@ -29,7 +125,7 @@ main{
     max-height: 80px;
     min-width: 400px;
     /* max-width: 800px; */
-    background-color: wheat;
+    background-color: #729B79;
     border-radius: 5px;
     margin: 10px;
     padding: 5px 20px;
@@ -56,5 +152,5 @@ svg{
 }
 
 .listItemAmount, .listTime{
-    color: gray;
+    color: #823038;
 }

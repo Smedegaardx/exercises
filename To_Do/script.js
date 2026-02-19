@@ -56,14 +56,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
 function addTask() {
   if (newTaskText.value != ""){
-  console.log(newTaskText.value)
     const toDoObj = { text: newTaskText.value, amount: newTaskAmount.value, time: newTaskTime.value, done: false, id: self.crypto.randomUUID() };
   toDoArray.push(toDoObj);
   // Reset input fields
   newTaskText.value = "";
   newTaskAmount.value = "";
   newTaskTime.value = "";
-  console.log(toDoArray);
   displayTasks();
   newTaskTime.classList.add("hidden");
   timeBtn.classList.remove("hidden");
@@ -148,7 +146,6 @@ function moveTask(evt) {
 }
 
 function openMenu(evt) {
-  console.log(evt.currentTarget.dataset.id)
   popup.classList.remove("hidden");
   deleteBtn.dataset.id = evt.currentTarget.dataset.id
   updateBtn.dataset.id = evt.currentTarget.dataset.id
@@ -166,7 +163,6 @@ updateBtn.classList.add("hidden")
 // Sletter den task hvis popup er åben
 function deleteTask(evt){
 itemIndex = toDoArray.findIndex((item) => item.id == evt.target.dataset.id);
-console.log(itemIndex)
 toDoArray.splice(itemIndex, 1)
 displayTasks();
 closeMenu();

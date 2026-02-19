@@ -24,8 +24,26 @@
       <ul id="doneListField"></ul>
     </main>
   </body>
+  <div id="popupContainer" class="hidden">
+  <div id="popup">
+    <a id="closePopup">&times;</a>
+    <button id="editBtn" >Rediger opgave</button>
+    <div>
+      <input id="editTaskText" placeholder="Ny opgave" class="taskinput hidden">
+      <div class="editExtras">
+      <input id="editTaskAmount" type="number" class="taskinput hidden">
+      <input id="editTaskTime" type="time" class="taskinput hidden">
+      </div>
+    </div>
+    <button id="updateBtn" class="hidden">Opdatér</button>
+    <button id="deleteBtn">Slet opgave</button>
+  </div>
+</div>
   <script src="script.js"></script>
+  
 </html>
+
+
 
 <!-- <li class="listItem">
         <div class="listItemDesc">

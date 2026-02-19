@@ -148,9 +148,63 @@ button.primary:active {
 
 svg{
     scale: 50%;
-    transform: rotate(90deg)
+    transform: rotate(90deg);
 }
 
 .listItemAmount, .listTime{
     color: #823038;
+}
+
+/* Popup styling */
+#popup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background-color:#BACDB0 ;
+    border: 3px solid #475B63;
+    border-radius: 20px;
+    width: 40dvh;
+    position: absolute;
+    left: 40dvw;
+    margin-top: 250px;
+    padding: 30px 0 20px;
+}
+
+#popupContainer{
+   height:100%;
+   width:100%;
+   background-color:rgba(0,0,0,0.2);
+   position:absolute;
+   bottom: 0%;
+}
+
+#closePopup{
+    font-size: 36px;
+    position: absolute;
+    left: 88%;
+    top: 5%;
+}
+
+#editTaskAmount{
+    width: 50px;
+    height: 10px;
+}
+
+#editTaskTime{
+    width: 80px;
+    height: 10px;
+}
+
+.editExtras{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: -20px;
+}
+
+#deleteBtn{
+    margin-top: 20px;
+    background-color: #823038;
+    color: white;
 }

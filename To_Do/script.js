@@ -1,14 +1,30 @@
 let toDoArray = [];
 const listField = document.querySelector("#listField");
 const doneListField = document.querySelector("#doneListField");
+
 const addBtn = document.querySelector("#addButton");
 const amountBtn = document.querySelector("#amountButton");
 const timeBtn = document.querySelector("#timeButton");
+const closeBtn = document.querySelector("#closePopup")
+const editBtn = document.querySelector("#editBtn")
+const deleteBtn = document.querySelector("#deleteBtn")
+const updateBtn = document.querySelector("#updateBtn")
+
 const newTaskText = document.querySelector("#newTaskText");
 const newTaskAmount = document.querySelector("#newTaskAmount");
 const newTaskTime = document.querySelector("#newTaskTime");
+const editTaskText = document.querySelector("#editTaskText")
+const editTaskAmount = document.querySelector("#editTaskAmount");
+const editTaskTime = document.querySelector("#editTaskTime");
+
+const popup = document.querySelector("#popupContainer");
 
 addBtn.addEventListener("click", addTask);
+closeBtn.addEventListener("click", closeMenu);
+deleteBtn.addEventListener("click", deleteTask);
+editBtn.addEventListener("click", openEdit)
+updateBtn.addEventListener("click", updateTask)
+
 amountBtn.addEventListener("click", () => {
   newTaskAmount.classList.remove("hidden");
   amountBtn.classList.add("hidden");
@@ -16,6 +32,13 @@ amountBtn.addEventListener("click", () => {
 timeBtn.addEventListener("click", () => {
   newTaskTime.classList.remove("hidden");
   timeBtn.classList.add("hidden");
+});
+
+// Lader brugeren trykke enter for at tilføje en ny task
+newTaskText.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    addBtn.click();
+  }
 });
 
 // Tager localstorage og viser listen, efter siden er loadet
@@ -57,7 +80,7 @@ function displayTasks() {
         </div>
         <div class="listEnd">
           <p class="listTime">${item.time ?? ""}</p>
-          <a class="menuButton">
+          <a class="menuButton" data-id="${item.id}">
           <svg viewBox="0,0 100,100" height="40" width="40" role="img" alt="more" class="menuicon">
             <circle cx="50" cy="15" r="10" />
             <circle cx="50" cy="50" r="10" />
@@ -75,7 +98,7 @@ function displayTasks() {
         </div>
         <div class="listEnd">
           <p class="listTime">${item.time ?? ""}</p>
-          <a class="menuButton">
+          <a class="menuButton" data-id="${item.id}">
           <svg viewBox="0,0 100,100" height="40" width="40" role="img" alt="more" class="menuicon">
             <circle cx="50" cy="15" r="10" />
             <circle cx="50" cy="50" r="10" />
@@ -99,8 +122,8 @@ function displayTasks() {
   // Sæt eventlistener på hver menuknap som bliver skabt fra arrayet
   buttons = document.querySelectorAll(".menuButton");
   buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      openMenu();
+    btn.addEventListener("click", (evt) => {
+      openMenu(evt);
     });
   });
   // Gemmer array i localstorage, ved at gøre det til JSON
@@ -119,6 +142,46 @@ function moveTask(evt) {
   displayTasks();
 }
 
-function openMenu() {
-  console.log("Menu");
+function openMenu(evt) {
+  console.log(evt.currentTarget.dataset.id)
+  popup.classList.remove("hidden");
+  deleteBtn.dataset.id = evt.currentTarget.dataset.id
+  updateBtn.dataset.id = evt.currentTarget.dataset.id
+}
+
+function closeMenu(){
+  popup.classList.add("hidden");
+  editBtn.classList.remove("hidden")
+  editTaskText.classList.add("hidden")
+editTaskAmount.classList.add("hidden")
+editTaskTime.classList.add("hidden")
+updateBtn.classList.add("hidden")
+}
+
+// Sletter den task hvis popup er åben
+function deleteTask(evt){
+itemIndex = toDoArray.findIndex((item) => item.id == evt.target.dataset.id);
+console.log(itemIndex)
+toDoArray.splice(itemIndex, 1)
+displayTasks();
+closeMenu();
+}
+
+function openEdit(){
+editBtn.classList.add("hidden")
+  editTaskText.classList.remove("hidden")
+editTaskAmount.classList.remove("hidden")
+editTaskTime.classList.remove("hidden")
+updateBtn.classList.remove("hidden")
+}
+
+// Replacer den task hvis popup er åben med ny task
+function updateTask(evt){
+ item = toDoArray.find((item) => item.id == evt.target.dataset.id);
+ const toDoObj = { text: editTaskText.value, amount: editTaskAmount.value, time: editTaskTime.value, done: false, id: evt.target.dataset.id };
+  toDoArray.push(toDoObj);
+ itemIndex = toDoArray.findIndex((item) => item.id == evt.target.dataset.id);
+ toDoArray.splice(itemIndex, 1)
+ displayTasks();
+ closeMenu();
 }

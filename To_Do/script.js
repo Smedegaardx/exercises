@@ -2,6 +2,7 @@ let toDoArray = [];
 const listField = document.querySelector("#listField");
 const doneListField = document.querySelector("#doneListField");
 
+// buttons
 const addBtn = document.querySelector("#addButton");
 const amountBtn = document.querySelector("#amountButton");
 const timeBtn = document.querySelector("#timeButton");
@@ -10,6 +11,7 @@ const editBtn = document.querySelector("#editBtn")
 const deleteBtn = document.querySelector("#deleteBtn")
 const updateBtn = document.querySelector("#updateBtn")
 
+// Textfields
 const newTaskText = document.querySelector("#newTaskText");
 const newTaskAmount = document.querySelector("#newTaskAmount");
 const newTaskTime = document.querySelector("#newTaskTime");

@@ -30,6 +30,7 @@ main{
     border: 3px solid #475B63;
     border-radius: 5%;
     color: #1F271B;
+    max-width: 90%;
 }
 
 h1{

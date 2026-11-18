@@ -214,3 +214,16 @@ svg {
   background-color: #823038;
   color: white;
 }
+
+.listItem {
+  cursor: grab;
+}
+
+.listItem:active {
+  cursor: grabbing;
+}
+
+.listItem.dragging {
+  opacity: 0.4;
+  border: 2px dashed #888;
+}

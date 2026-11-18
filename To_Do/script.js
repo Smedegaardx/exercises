@@ -1,6 +1,8 @@
 let toDoArray = [];
 const listField = document.querySelector("#listField");
 const doneListField = document.querySelector("#doneListField");
+let draggedElement = null;
+let draggedItemId = null;
 
 // buttons
 const addBtn = document.querySelector("#addButton");
@@ -96,7 +98,7 @@ function displayTasks() {
   doneListField.innerHTML = "";
   toDoArray.forEach((item) => {
     if (item.done == false) {
-      listField.innerHTML += `<li class="listItem">
+      listField.innerHTML += `<li class="listItem" draggable="true" data-id="${item.id}">
         <div class="listItemDesc">
           <input type="checkbox" class="checkbox" data-id="${item.id}" />
           <p class="listItemText">${item.text}</p>
@@ -114,7 +116,7 @@ function displayTasks() {
         </div>
       </li>`;
     } else {
-      doneListField.innerHTML += `<li class="listItem">
+      doneListField.innerHTML += `<li class="listItem" draggable="true" data-id="${item.id}">
         <div class="listItemDesc">
           <input type="checkbox" class="checkbox" checked data-id="${item.id}"/>
           <p class="listItemText">${item.text}</p>
@@ -152,6 +154,7 @@ function displayTasks() {
   // Gemmer array i localstorage, ved at gøre det til JSON
   string = JSON.stringify(toDoArray);
   localStorage.setItem("tasks", string);
+  enableDragAndDrop();
 }
 
 // Rykker en task fra to-do til done hvis der klikkes på dens checkbox
@@ -211,4 +214,78 @@ function updateTask(evt) {
   toDoArray.splice(itemIndex, 1);
   displayTasks();
   closeMenu();
+}
+
+function enableDragAndDrop() {
+  const listItems = document.querySelectorAll(".listItem");
+
+  listItems.forEach((li) => {
+    // When dragging starts
+    li.addEventListener("dragstart", (evt) => {
+      draggedElement = li;
+      draggedItemId = li.dataset.id;
+
+      li.classList.add("dragging");
+      evt.dataTransfer.effectAllowed = "move";
+    });
+
+    // When dragging ends
+    li.addEventListener("dragend", () => {
+      li.classList.remove("dragging");
+      draggedElement = null;
+      draggedItemId = null;
+    });
+
+    // When dragging over another item
+    li.addEventListener("dragover", (evt) => {
+      evt.preventDefault();
+
+      if (!draggedElement || draggedElement === li) return;
+
+      // Only allow reordering within the same list
+      if (draggedElement.parentElement !== li.parentElement) return;
+
+      const rect = li.getBoundingClientRect();
+      const middle = rect.top + rect.height / 2;
+
+      if (evt.clientY < middle) {
+        li.parentElement.insertBefore(draggedElement, li);
+      } else {
+        li.parentElement.insertBefore(draggedElement, li.nextSibling);
+      }
+    });
+
+    // When dropping the item
+    li.addEventListener("drop", (evt) => {
+      evt.preventDefault();
+
+      if (!draggedElement) return;
+
+      const list = draggedElement.parentElement;
+      const isDoneList = list === doneListField;
+
+      // Get the new order from the HTML
+      const orderedIds = Array.from(list.children).map(
+        (item) => item.dataset.id,
+      );
+
+      // Get the tasks in their new order
+      const orderedTasks = orderedIds.map((id) =>
+        toDoArray.find((item) => item.id === id),
+      );
+
+      // Replace the corresponding tasks in the array
+      let index = 0;
+
+      toDoArray = toDoArray.map((item) => {
+        if (item.done === isDoneList) {
+          return orderedTasks[index++];
+        }
+        return item;
+      });
+
+      // Save the new order
+      displayTasks();
+    });
+  });
 }

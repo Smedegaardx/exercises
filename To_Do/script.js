@@ -6,16 +6,16 @@ const doneListField = document.querySelector("#doneListField");
 const addBtn = document.querySelector("#addButton");
 const amountBtn = document.querySelector("#amountButton");
 const timeBtn = document.querySelector("#timeButton");
-const closeBtn = document.querySelector("#closePopup")
-const editBtn = document.querySelector("#editBtn")
-const deleteBtn = document.querySelector("#deleteBtn")
-const updateBtn = document.querySelector("#updateBtn")
+const closeBtn = document.querySelector("#closePopup");
+const editBtn = document.querySelector("#editBtn");
+const deleteBtn = document.querySelector("#deleteBtn");
+const updateBtn = document.querySelector("#updateBtn");
 
 // Textfields
 const newTaskText = document.querySelector("#newTaskText");
 const newTaskAmount = document.querySelector("#newTaskAmount");
 const newTaskTime = document.querySelector("#newTaskTime");
-const editTaskText = document.querySelector("#editTaskText")
+const editTaskText = document.querySelector("#editTaskText");
 const editTaskAmount = document.querySelector("#editTaskAmount");
 const editTaskTime = document.querySelector("#editTaskTime");
 
@@ -24,8 +24,8 @@ const popup = document.querySelector("#popupContainer");
 addBtn.addEventListener("click", addTask);
 closeBtn.addEventListener("click", closeMenu);
 deleteBtn.addEventListener("click", deleteTask);
-editBtn.addEventListener("click", openEdit)
-updateBtn.addEventListener("click", updateTask)
+editBtn.addEventListener("click", openEdit);
+updateBtn.addEventListener("click", updateTask);
 
 amountBtn.addEventListener("click", () => {
   newTaskAmount.classList.remove("hidden");
@@ -37,7 +37,7 @@ timeBtn.addEventListener("click", () => {
 });
 
 // Lader brugeren trykke enter for at tilføje en ny task
-newTaskText.addEventListener("keypress", function(event) {
+newTaskText.addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
     addBtn.click();
   }
@@ -48,30 +48,46 @@ newTaskText.addEventListener("keypress", function(event) {
 window.addEventListener("DOMContentLoaded", () => {
   retrievedString = localStorage.getItem("tasks");
   retrievedArray = JSON.parse(retrievedString);
-  if ((retrievedArray != null)  && (retrievedString != "[]")) {
+  if (retrievedArray != null && retrievedString != "[]") {
     toDoArray = retrievedArray;
     displayTasks();
   }
 });
 
 function addTask() {
-  if (newTaskText.value != ""){
-    const toDoObj = { 
-      text: newTaskText.value, 
-      amount: newTaskAmount.value, 
-      time: newTaskTime.value, 
-      done: false, 
-      id: self.crypto.randomUUID() };
-  toDoArray.push(toDoObj);
-  displayTasks();
-  // Reset input fields
-  newTaskText.value = "";
-  newTaskAmount.value = "";
-  newTaskTime.value = "";
-  newTaskTime.classList.add("hidden");
-  timeBtn.classList.remove("hidden");
-  newTaskAmount.classList.add("hidden");
-  amountBtn.classList.remove("hidden");
+  if (newTaskText.value != "") {
+    const toDoObj = {
+      text: newTaskText.value,
+      amount: newTaskAmount.value,
+      time: newTaskTime.value,
+      done: false,
+      id: self.crypto.randomUUID(),
+    };
+    toDoArray.push(toDoObj);
+    displayTasks();
+    checkHeadings();
+    // Reset input fields
+    newTaskText.value = "";
+    newTaskAmount.value = "";
+    newTaskTime.value = "";
+    newTaskTime.classList.add("hidden");
+    timeBtn.classList.remove("hidden");
+    newTaskAmount.classList.add("hidden");
+    amountBtn.classList.remove("hidden");
+  }
+}
+
+function checkHeadings() {
+  if (toDoArray.some((item) => item.done == false)) {
+    document.querySelector("#h2_1").classList.remove("hidden");
+  } else {
+    document.querySelector("#h2_1").classList.add("hidden");
+  }
+
+  if (toDoArray.some((item) => item.done == true)) {
+    document.querySelector("#h2_2").classList.remove("hidden");
+  } else {
+    document.querySelector("#h2_2").classList.add("hidden");
   }
 }
 
@@ -117,8 +133,7 @@ function displayTasks() {
       </li>`;
     }
   });
-  document.querySelector("#h2_1").classList.remove("hidden");
-  document.querySelector("#h2_2").classList.remove("hidden");
+  checkHeadings();
 
   // Sæt eventlistener på hver checkbox som bliver skabt fra arrayet
   checkboxes = document.querySelectorAll(".checkbox");
@@ -152,47 +167,48 @@ function moveTask(evt) {
 
 function openMenu(evt) {
   popup.classList.remove("hidden");
-  deleteBtn.dataset.id = evt.currentTarget.dataset.id
-  updateBtn.dataset.id = evt.currentTarget.dataset.id
+  deleteBtn.dataset.id = evt.currentTarget.dataset.id;
+  updateBtn.dataset.id = evt.currentTarget.dataset.id;
 }
 
-function closeMenu(){
+function closeMenu() {
   popup.classList.add("hidden");
-  editBtn.classList.remove("hidden")
-  editTaskText.classList.add("hidden")
-editTaskAmount.classList.add("hidden")
-editTaskTime.classList.add("hidden")
-updateBtn.classList.add("hidden")
+  editBtn.classList.remove("hidden");
+  editTaskText.classList.add("hidden");
+  editTaskAmount.classList.add("hidden");
+  editTaskTime.classList.add("hidden");
+  updateBtn.classList.add("hidden");
 }
 
 // Sletter den task hvis popup er åben
-function deleteTask(evt){
-itemIndex = toDoArray.findIndex((item) => item.id == evt.target.dataset.id);
-toDoArray.splice(itemIndex, 1)
-displayTasks();
-closeMenu();
+function deleteTask(evt) {
+  itemIndex = toDoArray.findIndex((item) => item.id == evt.target.dataset.id);
+  toDoArray.splice(itemIndex, 1);
+  displayTasks();
+  closeMenu();
 }
 
-function openEdit(){
-editBtn.classList.add("hidden")
-  editTaskText.classList.remove("hidden")
-editTaskAmount.classList.remove("hidden")
-editTaskTime.classList.remove("hidden")
-updateBtn.classList.remove("hidden")
+function openEdit() {
+  editBtn.classList.add("hidden");
+  editTaskText.classList.remove("hidden");
+  editTaskAmount.classList.remove("hidden");
+  editTaskTime.classList.remove("hidden");
+  updateBtn.classList.remove("hidden");
 }
 
 // Replacer den task hvis popup er åben med ny task
-function updateTask(evt){
- item = toDoArray.find((item) => item.id == evt.target.dataset.id);
- const toDoObj = { 
-  text: editTaskText.value, 
-  amount: editTaskAmount.value, 
-  time: editTaskTime.value, 
-  done: false, id: 
-  evt.target.dataset.id };
- toDoArray.push(toDoObj);
- itemIndex = toDoArray.findIndex((item) => item.id == evt.target.dataset.id);
- toDoArray.splice(itemIndex, 1)
- displayTasks();
- closeMenu();
+function updateTask(evt) {
+  item = toDoArray.find((item) => item.id == evt.target.dataset.id);
+  const toDoObj = {
+    text: editTaskText.value,
+    amount: editTaskAmount.value,
+    time: editTaskTime.value,
+    done: false,
+    id: evt.target.dataset.id,
+  };
+  toDoArray.push(toDoObj);
+  itemIndex = toDoArray.findIndex((item) => item.id == evt.target.dataset.id);
+  toDoArray.splice(itemIndex, 1);
+  displayTasks();
+  closeMenu();
 }
